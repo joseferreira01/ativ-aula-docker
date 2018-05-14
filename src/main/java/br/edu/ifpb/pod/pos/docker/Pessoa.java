@@ -17,10 +17,13 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(int id, String nome, String CPF) {
-        this.id = id;
+    private Pessoa( String nome, String CPF) {
+        this.id = -1;
         this.nome = nome;
         this.CPF = CPF;
+    }
+    public static Pessoa of( String nome, String CPF) {
+      return new Pessoa(nome, CPF);
     }
 
     public int getId() {

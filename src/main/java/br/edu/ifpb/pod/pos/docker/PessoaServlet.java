@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.POST;
 
 /**
  *
@@ -42,27 +43,19 @@ private Pessoas pessoas;
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    
-   
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String nome = req.getParameter("nome");
+            String cpf = req.getParameter("cpf");
+            pessoas.salvar(Pessoa.of(nome, cpf));
+            resp.sendRedirect("/app/Pessoas");
+        } catch (Exception e) {
+        }
+    }
+    
+    
     private void imprime(PrintWriter out) {
     List<Pessoa> lista = pessoas.todos();
     lista.forEach(c->out.print("<p>"+c.getNome()+"</p>"));
