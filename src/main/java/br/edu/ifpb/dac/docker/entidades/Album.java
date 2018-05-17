@@ -16,6 +16,11 @@ public class Album {
     private int id;
     private Estilo estilo; //Rock, Pop, Sertanejo
     private Banda banda;
+
+
+
+
+
     private LocalDate anoDeLancamento;
 
     public Album() {
