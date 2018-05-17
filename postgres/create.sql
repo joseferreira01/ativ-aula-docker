@@ -1,13 +1,13 @@
 CREATE TABLE Banda(
   id serial,
-  nome varchar[256] NOT NULL,
-  localDeOrigem varchar[256] NOT NULL,
+  nome varchar(256) NOT NULL,
+  localDeOrigem varchar(256) NOT NULL,
   PRIMARY KEY(id)
 );
 
 CREATE TABLE integrantes(
   id serial,
-  integrante varchar[256],
+  nome varchar(256),
   banda int NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(banda) REFERENCES Banda(id)
@@ -15,7 +15,7 @@ CREATE TABLE integrantes(
 
 CREATE TABLE Estilo(
   id serial,
-  nome varchar[10] NOT NULL,
+  nome varchar(10) NOT NULL,
   PRIMARY KEY(id)
 );
 
