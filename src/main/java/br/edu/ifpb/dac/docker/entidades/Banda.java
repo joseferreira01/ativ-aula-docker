@@ -12,18 +12,28 @@ import java.util.List;
  * @author jose
  */
 public class Banda {
+
     private int id;
-     private String nome;
+    private String nome;
     private String localDeOrigem;
     private List<String> integrates;
 
     public Banda() {
     }
 
-    public Banda(String nome, String localDeOrigem, List<String> integrates) {
+    private Banda(int id, String nome, String localDeOrigem, List<String> integrates) {
+        this.id = id;
         this.nome = nome;
         this.localDeOrigem = localDeOrigem;
         this.integrates = integrates;
+    }
+
+    public static Banda of(int id, String nome, String localDeOrigem, List<String> integrates) {
+        return new Banda(id, nome, localDeOrigem, integrates);
+    }
+
+    public static Banda of(String nome, String localDeOrigem, List<String> integrates) {
+        return new Banda(-1, nome, localDeOrigem, integrates);
     }
 
     public int getId() {
@@ -57,5 +67,5 @@ public class Banda {
     public void setIntegrates(List<String> integrates) {
         this.integrates = integrates;
     }
-    
+
 }

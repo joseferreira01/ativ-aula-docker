@@ -28,15 +28,15 @@ import java.util.logging.Logger;
  *
  * @author jose
  */
-public class bandas {
+public class Bandas {
      private Connection connection;
 
-    public bandas() throws ClassNotFoundException {
+    public Bandas() throws ClassNotFoundException {
          try {
              Class.forName("org.postgresql.Driver");
              connection = DriverManager.getConnection("jdbc:postgresql://host-banco:5432/atividade-docker", "postgres", "12345");
          } catch (SQLException ex) {
-             Logger.getLogger(bandas.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(Bandas.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
 
@@ -51,16 +51,35 @@ public class bandas {
              List<String> integrantes = new ArrayList<>();
             while (rs.next()) {
                 integrantes.add("innome");
-             Banda b = new Banda(rs.getString("nome"), rs.getString("localDeOrigem"), integrantes);
+             Banda b =  Banda.of(rs.getInt("id"),rs.getString("nome"), rs.getString("localDeOrigem"), integrantes);
                  connection.close();
                  return b;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+         return Banda.of("none", "none", Collections.EMPTY_LIST);
+     }
+     public List<Banda> todos() {
+        List<Banda> lista = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select b.nome, b.localDeOrigem, b.id, in.integrante innome "
+                    + "from banda, integrante in ");
+             List<String> integrantes = new ArrayList<>();
+            while (rs.next()) {
+                integrantes.add("innome");
+             Banda b =  Banda.of(rs.getInt("id"),rs.getString("nome"), rs.getString("localDeOrigem"), integrantes);
+             lista.add(b);
+                 connection.close();
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
        
 
-        return new Banda("none", "none", Collections.EMPTY_LIST);
+        return  lista;
     }
      public void delete(Album album){
            try {

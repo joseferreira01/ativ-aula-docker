@@ -6,7 +6,10 @@
 package br.edu.ifpb.dac.docker.view;
 
 import br.edu.ifpb.dac.docker.entidades.Album;
+import br.edu.ifpb.dac.docker.entidades.Banda;
 import br.edu.ifpb.dac.docker.repositorio.servico.AlbumServico;
+import br.edu.ifpb.dac.docker.repositorio.servico.BandaServico;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -18,24 +21,21 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class AlbumControler {
+public class BandaControler {
     @Inject
     private Mensagem  m;
-    private Album album;
-    private AlbumServico servico;
+    private BandaServico servico;
     @PostConstruct
     public void init(){
-        this.servico = new AlbumServico();
-        this.album = new Album();
-    }
-    public void salvar(){
-        try {
-            this.servico.salvar(album);
-            m.addMessage("Album salvo com sucesso");
-        } catch (Exception e) {
-            m.addMessage("Erro ao salvo ");
-        }
+        this.servico = new BandaServico();
         
+    }
+    public Banda buscar(int id){
+       return servico.buscar(id);
+        
+    }
+      public List<Banda> todos(){
+        return servico.todos();
     }
     
 }

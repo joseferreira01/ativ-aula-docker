@@ -14,19 +14,13 @@ CREATE TABLE integrantes(
   FOREIGN KEY(banda) REFERENCES Banda(id)
 );
 
-CREATE TABLE Estilo(
-  id serial,
-  nome varchar(10) NOT NULL,
-  PRIMARY KEY(id)
-);
-
 CREATE TABLE Album(
   id  serial,
+  nome VARCHAR(100),
   banda int NOT NULL,
-  estilo int NOT NULL,
+  estilo VARCHAR(100 ) NOT NULL,
   anoDeLancamento date NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY(banda) REFERENCES Banda(id),
-  FOREIGN KEY(estilo) REFERENCES Estilo(id)
->>>>>>> f316764c53c317fa80b75dccce651963c7556164
-);
+  FOREIGN KEY(banda) REFERENCES Banda(id)
+  
+)
