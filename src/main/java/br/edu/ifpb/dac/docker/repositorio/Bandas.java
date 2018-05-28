@@ -31,8 +31,8 @@ public class Bandas {
     public Bandas() throws ClassNotFoundException {
          try {
              Class.forName("org.postgresql.Driver");
-//             connection = DriverManager.getConnection("jdbc:postgresql://host-banco:5432/atividade-docker", "postgres", "12345");
-             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/atividade-docker", "postgres", "12345");
+             connection = DriverManager.getConnection("jdbc:postgresql://host-banco:5432/atividade-docker", "postgres", "12345");
+//             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/atividade-docker", "postgres", "12345");
          } catch (SQLException ex) {
              Logger.getLogger(Bandas.class.getName()).log(Level.SEVERE, null, ex);
          }
